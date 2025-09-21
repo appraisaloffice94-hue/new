@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>יהודה ורובינשטיין - משרד שמאות מקרקעין</title>
+
+    <!-- SEO & PWA -->
+    <meta name="description" content="יהודה ורובינשטיין - שמאי מקרקעין מומחים במושבים, משקים חקלאיים, היטלי השבחה ומיסוי מקרקעין. ליווי אישי, מקצועיות ושקיפות מלאה.">
+    <meta name="theme-color" content="#598447">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="images/favicon-32x32.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #e5efe2 0%, #f0f7ed 50%, #f8faf6 100%);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-right: 4px solid transparent;
+            background: linear-gradient(145deg, #ffffff, #f8faf6);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-right-color: #7c9885;
+            box-shadow: 0 25px 50px -12px rgba(124, 152, 133, 0.25);
+        }
+        
+        .icon-bg {
+            background: linear-gradient(135deg, #598447, #6b9555);
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(circle at 25% 25%, rgba(124, 152, 133, 0.1) 0%, transparent 50%),
+                              radial-gradient(circle at 75% 75%, rgba(156, 179, 165, 0.1) 0%, transparent 50%);
+        }
+        
+        .testimonial-card {
+            transition: all 0.5s ease;
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        
+        .testimonial-card.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+    .faq-content.open {
+    max-height: 200px;   /* נשאר מוגבל */
+    overflow-y: auto;    /* מוסיף גלילה פנימית */
+}
+   
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            background: rgba(124, 152, 133, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+        
+        .floating-shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body class="gradient-bg min-h-screen">
+<div id="top"></div>
+    <!-- Floating Background Elements -->
+    <div class="floating-elements" aria-hidden="true">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+<!-- Header -->
+<header class="bg-white/90 backdrop-blur-sm shadow-lg sticky top-0 z-50 h-[90px] flex items-center">
+<div class="max-w-7xl mx-auto px-0 sm:px-2 lg:px-4 w-full 
+              grid grid-cols-[auto_1fr_auto] items-center">
+
+    <!-- ימין: לוגו + שם -->
+<div class="flex items-center gap-3 mr-0 md:mr-0">
+    <a href="#top" class="logo-link">
+        <img src="images/logo.png"
+             alt="לוגו יהודה ורובינשטיין - שמאי מקרקעין"
+             class="object-contain w-auto h-[80px] sm:h-[120px] md:h-[130px]">
+    </a>
+    <div class="flex flex-col leading-tight">
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">
+            יהודה & רובינשטיין
+        </h1>
+        <p class="text-sm text-gray-600">משרד שמאות מקרקעין</p>
+    </div>
+</div>
+
+    <!-- אמצע: ניווט -->
+    <nav class="hidden md:flex space-x-8 space-x-reverse justify-center">
+      <a href="#about" class="text-gray-600 font-medium hover:text-green-700">אודות</a>
+      <a href="#services" class="text-gray-600 font-medium hover:text-green-700">שירותים</a>
+      <a href="#testimonials" class="text-gray-600 font-medium hover:text-green-700">המלצות</a>
+      <a href="#faq" class="text-gray-600 font-medium hover:text-green-700">שאלות נפוצות</a>
+    </nav>
+
+    <!-- שמאל: צור קשר -->
+    <div class="hidden md:flex justify-end">
+      <a href="#contact"
+         class="px-6 py-3 text-white font-semibold rounded-full shadow-lg transition-all transform hover:scale-105 hover:shadow-xl"
+         style="background: linear-gradient(135deg, #598447, #6b9555);">
+        צור קשר
+      </a>
+    </div>
+
+    <!-- תפריט מובייל (רק במובייל) -->
+    <button id="menuBtn" class="md:hidden text-gray-800 focus:outline-none justify-self-end">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+
+  </div>
+</header>
+
+
+<!-- תפריט צדדי במובייל -->
+<div id="mobileMenu" 
+     class="hidden fixed inset-0 bg-black/50 z-40">
+  <div class="bg-white w-64 h-full shadow-lg p-6 pt-28 flex flex-col space-y-6 
+              overflow-y-auto max-h-screen absolute right-0 top-0 transform translate-x-full 
+              transition-transform duration-300">
+              
+    <a href="#about" class="text-gray-800 font-medium hover:text-green-700">אודות</a>
+    <a href="#services" class="text-gray-800 font-medium hover:text-green-700">שירותים</a>
+    <a href="#testimonials" class="text-gray-800 font-medium hover:text-green-700">המלצות</a>
+    <a href="#faq" class="text-gray-800 font-medium hover:text-green-700">שאלות נפוצות</a>
+    <a href="#contact"
+       class="px-6 py-3 text-white font-semibold rounded-full shadow-lg text-center"
+       style="background: linear-gradient(135deg, #598447, #6b9555);">
+       צור קשר
+    </a>
+  </div>
+</div>
+
+
+
+
+
+    <!-- Hero Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 hero-pattern relative">
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+                שמאות מקרקעין למגוון נכסים
+                <span class="block" style="color: #598447;">עם חיסכון אמיתי בכסף</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed">
+                מומחיות במושבים, משקים חקלאיים וניסיון עשיר בהתנהלות מול רמ"י ורשויות המס
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105" style="background-color: #598447;">
+                    קבל הצעת מחיר
+                </a>
+                <a href="#services" class="border-2 px-8 py-4 rounded-lg text-lg font-semibold transition-all hover:text-white" style="border-color: #598447; color: #598447;" onmouseover="this.style.backgroundColor='#598447'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#598447'">
+                    למד עוד
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+<section id="about" class="py-20 bg-white/50 scroll-mt-[100px]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">נעים להכיר</h2>
+                <div class="max-w-4xl mx-auto">
+                    <p class="text-xl text-gray-700 leading-relaxed mb-6">
+                        נעים להכיר, דולב יהודה וזיו רובינשטיין. את השותפות המקצועית שלנו התחלנו כבר כלוחמים בצבא, שם רכשנו את ערכי האמינות, דיוק ואחריות.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        כחיילים לוחמים ומפקדים, בנינו יסודות של נחישות, אמינות וקבלת החלטות תחת לחץ, ערכים שמלווים אותנו עד היום בכל לקוח ובכל חוות דעת שמאית.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        לאחר השחרור, המשכנו יחד ללימודים אקדמיים בכלכלה וניהול, ומשם הדרך הייתה ברורה, להפוך למומחים בתחום שמאות המקרקעין.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                        כיום אנחנו שמאי מקרקעין מוסמכים, עם ניסיון רב והכשרה מקיפה.
+                    </p>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        המשרד שלנו מתמחה במתן שירותי שמאות מקצועיים ואמינים, תוך שמירה על שקיפות מלאה וליווי אישי לכל לקוח.
+                    </p>
+                </div>
+            </div>
+        </div>
+ </section>
+<!-- Services Section -->
+<section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">המוצרים והשירותים שלנו</h2>
+            <p class="text-xl text-gray-600">פתרונות מקצועיים ומותאמים אישית לכל צורך</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- היטל השבחה -->
+            <div class="service-card rounded-xl p-8 shadow-lg">
+                <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md" aria-hidden="true">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">היטל השבחה</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    משרדנו בעל ניסיון עשיר בייצוג לקוחות מול ועדות מקומיות ובהפחתת חיובי היטל השבחה. ליווי מקצועי מקיף ושקיפות מלאה.
+                </p>
+            </div>
+
+            <!-- הערכות שווי -->
+            <div class="service-card rounded-xl p-8 shadow-lg">
+                <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md" aria-hidden="true">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">הערכות שווי לנכסים</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    משרדנו מבצע הערכות שווי למגוון נכסי מקרקעין תוך הקפדה על מקצועיות, אמינות ושירות אישי.
+                </p>
+            </div>
+
+            <!-- מיסוי מקרקעין -->
+            <div class="service-card rounded-xl p-8 shadow-lg">
+                <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md" aria-hidden="true">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">מיסוי מקרקעין</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    משרדנו מתמחה בהכנת חוות דעת והערכות שווי לצורכי מס שבח, מס רכישה והיטל השבחה. אנו מלווים לקוחות מול רשויות המס ורמ"י.
+                </p>
+            </div>
+
+            <!-- משק חקלאי -->
+            <div class="service-card rounded-xl p-8 shadow-lg">
+                <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md" aria-hidden="true">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">משק חקלאי</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    מומחים בשמאות למשקים חקלאיים ונכסים במושבים, עם ניסיון וידע מעמיק בהחלטות רמ"י – כולל חישובי שווי ברוטו–נטו במכירה.
+                </p>
+            </div>
+
+            <!-- חוות דעת לבית משפט -->
+            <div class="service-card rounded-xl p-8 shadow-lg md:col-span-2 lg:col-span-1">
+                <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md" aria-hidden="true">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">חוות דעת לבית משפט</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    משרדנו מלווה לקוחות בהליכים משפטיים בתחומי שמאות מקרקעין, כולל חוות דעת מומחה לבית משפט, הערכות שווי בסכסוכי ירושה ופירוק שיתוף.
+                </p>
+            </div>
+
+            <!-- שמאות לצורכי משכנתא (תקן 19) -->
+            <div class="service-card rounded-xl p-8 shadow-lg">
+                <div class="icon-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 shadow-md" aria-hidden="true">
+                    <!-- אייקון בית עם סימן וי -->
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M3 12l9-9 9 9M4 10v10a1 1 0 001 1h6m8-11v10a1 1 0 01-1 1h-6m0-4h4m-8 0h.01"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M9 16l2 2 4-4"/>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-4">שמאות לצורכי משכנתא (תקן 19)</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    דוח שמאי מלא ומוכר לבנקים לפי תקן 19: ביקור בנכס, בדיקות תכנוניות, ניתוח עסקאות השוואה והערכת שווי
+                    מנומקת. הדוח מותאם לדרישות הגשת המשכנתא.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- FAQ Section -->
+<section id="faq" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-800 mb-4">שאלות נפוצות</h2>
+            <p class="text-xl text-gray-600">תשובות לשאלות הנפוצות ביותר</p>
+        </div>
+        
+        <div class="space-y-4">
+            <!-- שאלה 1 -->
+            <div class="faq-item bg-gray-50 rounded-lg">
+                <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-gray-100 transition-colors" 
+                        aria-expanded="false" aria-controls="faq1">
+                    <span class="text-lg font-semibold text-gray-800">כמה זמן לוקח תהליך השמאות?</span>
+                    <svg class="w-5 h-5 text-gray-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq1" class="faq-content px-6 pb-6" aria-hidden="true">
+                    <p class="text-gray-600">
+                        תהליך השמאות נמשך בדרך כלל בין 7-14 ימי עסקים, תלוי במורכבות הנכס ובזמינות המידע הנדרש.
+                        חשוב לציין שהזמנים הללו אינם בהכרח קבועים - לעיתים אנו יכולים לספק את השירות בזמנים קצרים יותר.
+                        אם יש לכם לחץ זמנים או דחיפות מיוחדת, חשוב לציין זאת בפנייה אלינו או בשיחה הראשונה.
+                        אנו נעשה כל מאמץ לתת קדימות ולעמוד בלוחות הזמנים הנדרשים בהתאם למה שנתחייב מולכם.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- שאלה 2 -->
+            <div class="faq-item bg-gray-50 rounded-lg">
+                <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-gray-100 transition-colors"
+                        aria-expanded="false" aria-controls="faq2">
+                    <span class="text-lg font-semibold text-gray-800">מה כלול בדוח השמאות?</span>
+                    <svg class="w-5 h-5 text-gray-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq2" class="faq-content px-6 pb-6" aria-hidden="true">
+                    <p class="text-gray-600">
+                        דוח השמאות כולל ניתוח מקיף של הנכס, השוואה לנכסים דומים, הערכת שווי מפורטת ונימוקים מקצועיים.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- שאלה 3 -->
+            <div class="faq-item bg-gray-50 rounded-lg">
+                <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-gray-100 transition-colors"
+                        aria-expanded="false" aria-controls="faq3">
+                    <span class="text-lg font-semibold text-gray-800">באילו סוגי נכסים אתם מתמחים?</span>
+                    <svg class="w-5 h-5 text-gray-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq3" class="faq-content px-6 pb-6" aria-hidden="true">
+                    <p class="text-gray-600">
+                        אנו מתמחים בהערכות שווי למגוון רחב של נכסים: דירות מגורים, בתים פרטיים, מגרשים צמודי קרקע, נכסים מסחריים ומשרדים.
+                        התמחות ייחודית שלנו היא בנחלות ובמושבים, כולל השגות מול רמ"י והפחתת היטלי השבחה.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- שאלה 4 -->
+            <div class="faq-item bg-gray-50 rounded-lg">
+                <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-gray-100 transition-colors"
+                        aria-expanded="false" aria-controls="faq4">
+                    <span class="text-lg font-semibold text-gray-800">כמה זה יעלה לי?</span>
+                    <svg class="w-5 h-5 text-gray-600 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                <div id="faq4" class="faq-content px-6 pb-6" aria-hidden="true">
+                    <p class="text-gray-600">
+                        עלות השירות תלויה בסוג העבודה ובהיקף העבודה הנדרשת, והיא משתנה מעבודה לעבודה.
+                        הצעת מחיר מדויקת ניתן לתת רק לאחר שיחה עם הלקוח והתאמת השירות הנדרש לצרכים הספציפיים שלכם.
+                        צרו קשר לקבלת הצעת מחיר ללא התחייבות.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->    <!-- Contact Section -->
+    <section id="contact" class="py-20" style="background-color: #e5efe2;">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-800 mb-8">צור קשר עוד היום</h2>
+                <p class="text-xl text-gray-600 mb-12">קבל ייעוץ מקצועי והצעת מחיר ללא התחייבות</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-8">פרטי התקשרות</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center space-x-4 space-x-reverse">
+                            <div class="icon-bg w-12 h-12 rounded-full flex items-center justify-center" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">דולב יהודה</h4>
+                                <p class="text-gray-600"><a href="tel:+972525283001" class="hover:text-green-700">052-528-3001</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 space-x-reverse">
+                            <div class="icon-bg w-12 h-12 rounded-full flex items-center justify-center" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">זיו רובינשטיין</h4>
+                                <p class="text-gray-600"><a href="tel:+972548834929" class="hover:text-green-700">054-883-4929</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 space-x-reverse">
+                            <div class="icon-bg w-12 h-12 rounded-full flex items-center justify-center" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">דואר אלקטרוני</h4>
+                                <p class="text-gray-600"><a href="mailto:appraisaloffice94@gmail.com" class="hover:text-green-700">appraisaloffice94@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4 space-x-reverse">
+                            <div class="icon-bg w-12 h-12 rounded-full flex items-center justify-center" aria-hidden="true">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">כתובת</h4>
+                                <p class="text-gray-600">תל אביב, ישראל</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">השאר פרטים ונחזור אליך</h3>
+                    <form id="contactForm" class="space-y-6" action="https://formspree.io/f/mrbajaeg" method="POST">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="fullname">שם מלא *</label>
+                            <input id="fullname" name="fullname" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" placeholder="הכנס את שמך המלא">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="email">דואר אלקטרוני *</label>
+                            <input id="email" name="email" type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" placeholder="הכנס את כתובת המייל שלך">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="phone">מספר טלפון *</label>
+                            <input id="phone" name="phone" type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" placeholder="הכנס את מספר הטלפון שלך">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2" for="message">פרטים נוספים</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-400 focus:border-transparent transition-colors" placeholder="ספר לנו על הנכס או השירות שאתה מחפש..."></textarea>
+                        </div>
+                        
+                        <!-- כפתור שליחה + מצב טעינה -->
+                        <button id="submitBtn" type="submit" class="w-full text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg flex justify-center items-center gap-2" style="background-color: #598447;">
+                            <span id="submitText">שלח פנייה</span>
+                            <svg id="loadingSpinner" class="w-5 h-5 text-white animate-spin hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- הודעת תודה -->
+                        <p id="thankYouMsg" class="hidden text-green-700 font-semibold mt-4" aria-live="polite">✅ תודה רבה! פנייתך התקבלה ונחזור אליך בהקדם.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Floating WhatsApp Button -->
+    <div id="whatsappFloat" class="fixed bottom-6 right-6 z-50" aria-label="צור קשר בוואטסאפ">
+        <!-- Main WhatsApp Button -->
+        <div id="whatsappMainBtn" class="bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full flex items-center justify-center shadow-lg cursor-pointer transition-all transform hover:scale-110" aria-label="פתח תפריט וואטסאפ" role="button" tabindex="0">
+            <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516"/>
+            </svg>
+        </div>
+        
+        <!-- Contact Options Menu -->
+        <div id="whatsappMenu" class="absolute bottom-20 right-0 bg-white rounded-lg shadow-xl p-4 min-w-64 transform scale-0 origin-bottom-right transition-all duration-300">
+            <div class="text-center mb-4">
+                <h3 class="font-bold text-gray-800 mb-2">בחר איש קשר</h3>
+                <p class="text-sm text-gray-600">לחץ על אחד מהמספרים ליצירת קשר בוואטסאפ</p>
+            </div>
+            
+            <div class="space-y-3">
+                <!-- Dolev Contact -->
+                <a href="https://wa.me/972525283001?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%20%D7%94%D7%A9%D7%9E%D7%90%D7%95%D7%AA%20%D7%A9%D7%9C%D7%9B%D7%9D" 
+                   target="_blank" 
+                   class="flex items-center p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors group" aria-label="שליחת הודעה לדולב יהודה בוואטסאפ">
+                    <div class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center ml-3" aria-hidden="true">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-gray-800 group-hover:text-green-700">דולב יהודה</div>
+                        <div class="text-sm text-gray-600">052-528-3001</div>
+                    </div>
+                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+                    </svg>
+                </a>
+                
+                <!-- Ziv Contact -->
+                <a href="https://wa.me/972548834929?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A0%D7%95%D7%A1%D7%A4%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%A9%D7%99%D7%A8%D7%95%D7%AA%D7%99%20%D7%94%D7%A9%D7%9E%D7%90%D7%95%D7%AA%20%D7%A9%D7%9C%D7%9B%D7%9D" 
+                   target="_blank" 
+                   class="flex items-center p-3 bg-green-50 hover:bg-green-100 rounded-lg transition-colors group" aria-label="שליחת הודעה לזיו רובינשטיין בוואטסאפ">
+                    <div class="bg-green-500 w-10 h-10 rounded-full flex items-center justify-center ml-3" aria-hidden="true">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-semibold text-gray-800 group-hover:text-green-700">זיו רובינשטיין</div>
+                        <div class="text-sm text-gray-600">054-883-4929</div>
+                    </div>
+                    <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-gray-200">
+                <button id="closeWhatsappMenu" class="w-full text-center text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                    סגור
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">יהודה & רובינשטיין</h3>
+                    <p class="text-gray-300">משרד שמאות מקרקעין מקצועי ואמין</p>
+                </div>
+      <div>
+  <h4 class="text-lg font-semibold mb-4">שירותים</h4>
+  <ul class="space-y-2 text-gray-300">
+      <li>היטל השבחה</li>
+      <li>הערכות שווי</li>
+      <li>מיסוי מקרקעין</li>
+      <li>משק חקלאי</li>
+      <li>חוות דעת לבית משפט</li>
+      <li>שמאות לצורכי משכנתא (תקן 19)</li>
+  </ul>
+</div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">צור קשר</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p>📞 <a href="tel:+972525283001" class="underline hover:text-white">דולב: 052-528-3001</a></p>
+                        <p>📞 <a href="tel:+972548834929" class="underline hover:text-white">זיו: 054-883-4929</a></p>
+                        <p>✉️ <a href="mailto:appraisaloffice94@gmail.com" class="underline hover:text-white">appraisaloffice94@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 יהודה & רובינשטיין - משרד שמאות מקרקעין. כל הזכויות שמורות.</p>
+            </div>
+        </div>
+    </footer>
+
+
+<script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // FAQ functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+        question.addEventListener('click', function() {
+            const faqItem = this.parentElement;
+            const content = faqItem.querySelector('.faq-content');
+            const icon = this.querySelector('svg');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.querySelector('.faq-content').classList.remove('open');
+                    item.querySelector('svg').style.transform = 'rotate(0deg)';
+                    item.querySelector('.faq-question').setAttribute('aria-expanded','false');
+                    item.querySelector('.faq-content').setAttribute('aria-hidden','true');
+                }
+            });
+            
+            // Toggle current FAQ item
+            content.classList.toggle('open');
+            const isOpen = content.classList.contains('open');
+            icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+            this.setAttribute('aria-expanded', String(isOpen));
+            content.setAttribute('aria-hidden', String(!isOpen));
+        });
+    });
+
+    // Testimonials rotation
+    const testimonials = [
+        {
+            text: "שירות מקצועי ואמין. הצוות ליווה אותנו לאורך כל התהליך עם סבלנות ומקצועיות גבוהה.",
+            name: "יוסי כהן",
+            title: "לקוח מרוצה"
+        },
+        {
+            text: "קיבלנו שירות מעולה והערכת שווי מדויקת. ממליץ בחום על המשרד!",
+            name: "רחל לוי",
+            title: "לקוחה מרוצה"
+        },
+        {
+            text: "מקצועיות ברמה הגבוהה ביותר. עזרו לנו לחסוך כסף רב בהיטל השבחה.",
+            name: "משה דוד",
+            title: "לקוח מרוצה"
+        }
+    ];
+
+    let currentTestimonial = 0;
+    const testimonialCard = document.querySelector('.testimonial-card');
+    const testimonialDots = document.querySelectorAll('.testimonial-dot');
+
+    function updateTestimonial(index) {
+        const testimonial = testimonials[index];
+        testimonialCard.innerHTML = `
+            <div class="mb-6">
+                <div class="flex justify-center mb-4">
+                    <div class="flex text-yellow-400" aria-hidden="true">
+                        <span class="text-2xl">⭐⭐⭐⭐⭐</span>
+                    </div>
+                </div>
+                <p class="text-lg text-gray-700 italic mb-6">"${testimonial.text}"</p>
+                <div class="font-semibold text-gray-800">${testimonial.name}</div>
+                <div class="text-gray-600">${testimonial.title}</div>
+            </div>
+        `;
+        
+        // Update dots
+        testimonialDots.forEach((dot, i) => {
+            if (i === index) {
+                dot.style.backgroundColor = '#598447';
+                dot.classList.remove('bg-gray-300');
+            } else {
+                dot.style.backgroundColor = '#d1d5db';
+                dot.classList.add('bg-gray-300');
+            }
+        });
+    }
+
+    // Auto-rotate testimonials
+    setInterval(() => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        updateTestimonial(currentTestimonial);
+    }, 5000);
+
+    // Manual testimonial navigation
+    testimonialDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentTestimonial = index;
+            updateTestimonial(currentTestimonial);
+        });
+    });
+
+    // Swipe (מגע) על הביקורות
+    const testimonialContainer = document.querySelector('.testimonial-container');
+    let startX = 0;
+    let endX = 0;
+
+    testimonialContainer.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+    });
+
+    testimonialContainer.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const diffX = endX - startX;
+      if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+        } else {
+          currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        }
+        updateTestimonial(currentTestimonial);
+      }
+    }
+
+    // Contact form submission (Formspree + ספינר + תודה)
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const data = new FormData(form);
+
+        // אלמנטים בכפתור
+        const submitText = document.getElementById("submitText");
+        const loadingSpinner = document.getElementById("loadingSpinner");
+        const thankYouMsg = document.getElementById("thankYouMsg");
+
+        // מציג ספינר ומסתיר טקסט
+        submitText.classList.add("hidden");
+        loadingSpinner.classList.remove("hidden");
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                form.reset();
+                thankYouMsg.classList.remove("hidden");
+                form.querySelector("button[type=submit]").classList.add("hidden");
+            } else {
+                alert("אירעה שגיאה בשליחת הטופס. נסו שוב מאוחר יותר.");
+            }
+        } catch (err) {
+            alert("שגיאה בחיבור. נסו שוב מאוחר יותר.");
+        } finally {
+            submitText.classList.remove("hidden");
+            loadingSpinner.classList.add("hidden");
+        }
+    });
+
+    // WhatsApp floating button functionality
+    const whatsappMainBtn = document.getElementById('whatsappMainBtn');
+    const whatsappMenu = document.getElementById('whatsappMenu');
+    const closeWhatsappMenu = document.getElementById('closeWhatsappMenu');
+    let isMenuOpen = false;
+
+    function toggleWhatsAppMenu(forceClose = false) {
+        if (forceClose || isMenuOpen) {
+            whatsappMenu.style.transform = 'scale(0)';
+            whatsappMenu.style.opacity = '0';
+            isMenuOpen = false;
+        } else {
+            whatsappMenu.style.transform = 'scale(1)';
+            whatsappMenu.style.opacity = '1';
+            isMenuOpen = true;
+        }
+    }
+
+    whatsappMainBtn.addEventListener('click', () => toggleWhatsAppMenu());
+    whatsappMainBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleWhatsAppMenu();
+        }
+    });
+
+    closeWhatsappMenu.addEventListener('click', () => toggleWhatsAppMenu(true));
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const whatsappFloat = document.getElementById('whatsappFloat');
+        if (!whatsappFloat.contains(event.target) && isMenuOpen) {
+            toggleWhatsAppMenu(true);
+        }
+    });
+
+    // Button interactions (Hero CTA)
+    document.querySelectorAll('a,button').forEach(el => {
+        if (!el.classList.contains('faq-question') && 
+            !el.classList.contains('testimonial-dot') && 
+            el.id !== 'closeWhatsappMenu') {
+            el.addEventListener('click', function() {
+                if (this.textContent.includes('קבל הצעת מחיר')) {
+                    const c = document.querySelector('#contact');
+                    if (c) c.scrollIntoView({ behavior: 'smooth' });
+                } else if (this.textContent.includes('למד עוד')) {
+                    const s = document.querySelector('#services');
+                    if (s) s.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+    });
+
+    // תפריט מובייל עם Toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuBox = mobileMenu.querySelector('div');
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+
+    let menuOpen = false;
+
+    function toggleMobileMenu() {
+      if (!menuOpen) {
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => menuBox.classList.remove('translate-x-full'), 10);
+        menuOpen = true;
+      } else {
+        menuBox.classList.add('translate-x-full');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+        menuOpen = false;
+      }
+    }
+
+    menuBtn.addEventListener('click', toggleMobileMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', toggleMobileMenu));
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) toggleMobileMenu();
+    });
+console.log("✅ הסקריפט נטען בהצלחה עד הסוף!");
+</script>
+
+
+
+    <!-- (נשאר במקור) Cloudflare snippet להקשחת בוטים -->
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97cd7e60e3a25115',t:'MTc1NzQ5MjI5Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
